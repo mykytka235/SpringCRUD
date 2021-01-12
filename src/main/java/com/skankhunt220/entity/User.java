@@ -1,6 +1,5 @@
 package com.skankhunt220.entity;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,4 +16,11 @@ public class User {
 	private String firstName;
 	private String middleName;
 	private String lastName;	
+	
+	public User(String firstName, String middleName, String lastName) 
+	{
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+	}
 }
