@@ -1,6 +1,5 @@
 package com.skankhunt220.api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,29 +13,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skankhunt220.entity.User;
 import com.skankhunt220.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserController {
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
 	@PostMapping
 	public ResponseEntity<User> create(@RequestBody User user) {
-		return userService.createUser(user);
+		return userService.create(user);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> read(@PathVariable("id") String id) {
-		return userService.readUser(id);
+		return userService.read(id);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<User> update(@PathVariable("id") String id, @RequestBody User user) {
-		return userService.updateUser(id, user);
+		return userService.update(id, user);
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") String id) {
-		userService.deleteUser(id);
+		userService.delete(id);
 	}
 }

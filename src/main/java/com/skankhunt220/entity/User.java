@@ -10,19 +10,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "users")
 public class User {
-	private @Id String id;
+	@Id 
+	private String id;
 	private String firstName;
 	private String middleName;
 	private String lastName;	
-
-	public User(String firstName, String middleName, String lastName) 
-	{
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-	}
 } 

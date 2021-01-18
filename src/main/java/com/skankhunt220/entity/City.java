@@ -4,21 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "cities")
 public class City {
-	private @Id String id;
+	@Id
+	private String id;
 	private String name;
 	private String zipCode;
-		
-	public City(String name, String zipCode) 
-	{
-		this.name = name;
-		this.zipCode = zipCode;
-	}
 }
