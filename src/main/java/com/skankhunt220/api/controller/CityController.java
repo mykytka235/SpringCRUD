@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skankhunt220.entity.User;
-import com.skankhunt220.service.UserService;
+import com.skankhunt220.entity.City;
+import com.skankhunt220.service.CityService;
 
 @RestController
-@RequestMapping("/api/users")
-public class UserController {
+@RequestMapping("/api/cities")
+public class CityController {
 	@Autowired
-	private UserService userService;
-
+	private CityService cityService;
+	
 	@PostMapping
-	public ResponseEntity<User> create(@RequestBody User user) {
-		return userService.createUser(user);
+	public ResponseEntity<City> create(@RequestBody City city) {
+		return cityService.createCity(city);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> read(@PathVariable("id") String id) {
-		return userService.readUser(id);
+	public ResponseEntity<City> read(@PathVariable("id") String id) {
+		return cityService.readCity(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<User> update(@PathVariable("id") String id, @RequestBody User user) {
-		return userService.updateUser(id, user);
+	public ResponseEntity<City> update(@PathVariable("id") String id, @RequestBody City city) {
+		return cityService.updateCity(id, city);
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") String id) {
-		userService.deleteUser(id);
+		cityService.deleteCity(id);
 	}
 }
