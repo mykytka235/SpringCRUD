@@ -11,34 +11,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skankhunt220.entity.User;
-import com.skankhunt220.service.UserService;
+import com.skankhunt220.entity.City;
+import com.skankhunt220.service.CityService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/cities")
 @RequiredArgsConstructor
-public class UserController {
-	private final UserService userService;
-
+public class CityController {
+	private final CityService cityService;
+	
 	@PostMapping
-	public User create(@RequestBody User user) {
-		return userService.create(user);
+	public City create(@RequestBody City city) {
+		return cityService.create(city);
 	}
 
 	@GetMapping("/{id}")
-	public User read(@PathVariable("id") String id) {
-		return userService.read(id);
+	public City read(@PathVariable("id") String id) {
+		return cityService.read(id);
 	}
 
 	@PutMapping("/{id}")
-	public User update(@PathVariable("id") String id, @RequestBody User user) {
-		return userService.update(transform(user, id));
+	public City update(@PathVariable("id") String id, @RequestBody City city) {
+		return cityService.update(transform(city, id));
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") String id) {
-		userService.delete(id);
+		cityService.delete(id);
 	}
 }

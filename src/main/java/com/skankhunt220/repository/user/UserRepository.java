@@ -1,4 +1,4 @@
-package com.skankhunt220.repository;
+package com.skankhunt220.repository.user;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

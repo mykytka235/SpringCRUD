@@ -12,11 +12,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "users")
-public class User {
-	@Id 
+@Document(collection = "cities")
+public class City {
+	@Id
 	private String id;
-	private String firstName;
-	private String middleName;
-	private String lastName;	
-} 
+	private String name;
+	private String zipCode;
+}
