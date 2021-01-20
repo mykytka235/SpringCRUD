@@ -1,4 +1,3 @@
-
 package com.skankhunt220.service;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public User read(String userId) {
+	public User getById(String userId) {
 		return userRepository.findById(userId).get();
 	}
 

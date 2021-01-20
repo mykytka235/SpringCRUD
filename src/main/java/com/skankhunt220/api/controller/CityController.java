@@ -1,6 +1,6 @@
 package com.skankhunt220.api.controller;
 
-import static com.skankhunt220.api.transformer.Transformer.transform;
+import static com.skankhunt220.api.transformer.CityTransformer.transform;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skankhunt220.api.dto.CityDto;
 import com.skankhunt220.entity.City;
 import com.skankhunt220.service.CityService;
 
@@ -23,18 +24,19 @@ public class CityController {
 	private final CityService cityService;
 	
 	@PostMapping
-	public City create(@RequestBody City city) {
-		return cityService.create(city);
+	public CityDto create(@RequestBody CityDto cityDto) {
+		City city = transform(cityDto, cityDto.getId());
+		return transform(cityService.create(city), city.getId());
 	}
 
 	@GetMapping("/{id}")
-	public City read(@PathVariable("id") String id) {
-		return cityService.read(id);
+	public CityDto getCity(@PathVariable("id") String id) {
+		return transform(cityService.getById(id), id);
 	}
 
 	@PutMapping("/{id}")
-	public City update(@PathVariable("id") String id, @RequestBody City city) {
-		return cityService.update(transform(city, id));
+	public CityDto update(@PathVariable("id") String id, @RequestBody CityDto city) {
+		return transform(cityService.update(transform(city, id)), id);
 	}
 
 	@DeleteMapping("/{id}")

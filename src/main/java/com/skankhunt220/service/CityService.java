@@ -1,4 +1,3 @@
-
 package com.skankhunt220.service;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class CityService {
 		return cityRepository.save(city);
 	}
 
-	public City read(String cityId) {
+	public City getById(String cityId) {
 		return cityRepository.findById(cityId).get();
 	}
 

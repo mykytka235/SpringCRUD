@@ -1,7 +1,4 @@
-package com.skankhunt220.entity;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.skankhunt220.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "cities")
-public class City {
-	@Id
+public class CityDto {
 	private String id;
 	private String name;
 	private String zipCode;

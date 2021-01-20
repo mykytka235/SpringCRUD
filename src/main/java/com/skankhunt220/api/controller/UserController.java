@@ -1,6 +1,6 @@
 package com.skankhunt220.api.controller;
 
-import static com.skankhunt220.api.transformer.Transformer.transform;
+import static com.skankhunt220.api.transformer.UserTransformer.transform;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skankhunt220.api.dto.UserDto;
 import com.skankhunt220.entity.User;
 import com.skankhunt220.service.UserService;
 
@@ -23,18 +24,19 @@ public class UserController {
 	private final UserService userService;
 
 	@PostMapping
-	public User create(@RequestBody User user) {
-		return userService.create(user);
+	public UserDto create(@RequestBody UserDto userDto) {
+		User user = userService.create(transform(userDto, userDto.getId()));
+		return transform(user, user.getId());
 	}
 
 	@GetMapping("/{id}")
-	public User read(@PathVariable("id") String id) {
-		return userService.read(id);
+	public UserDto getUser(@PathVariable("id") String id) {
+		return transform(userService.getById(id), id);
 	}
 
 	@PutMapping("/{id}")
-	public User update(@PathVariable("id") String id, @RequestBody User user) {
-		return userService.update(transform(user, id));
+	public UserDto update(@PathVariable("id") String id, @RequestBody UserDto userDto) {
+		return transform(userService.update(transform(userDto, id)), id);
 	}
 
 	@DeleteMapping("/{id}")
